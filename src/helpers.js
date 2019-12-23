@@ -121,7 +121,9 @@ module.exports = {
 
     const urls = await extractUrlsFromPage(page, selector, sameDomain, urlDomain);
 
-    const requestOptions = createRequestOptions(urls, { depth: depth + 1 });
+    const filteredUrls = urls.filter(url => url.includes('contact'));
+
+    const requestOptions = createRequestOptions(filteredUrls, { depth: depth + 1 });
 
     const requests = createRequests(requestOptions);
     return addRequestsToQueueInBatches(requests, requestQueue);
