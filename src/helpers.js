@@ -1,6 +1,7 @@
 const Apify = require('apify');
 const _ = require('underscore');
 const domain = require('getdomain');
+const url = require('url');
 
 const { Request } = Apify;
 
@@ -121,7 +122,7 @@ module.exports = {
 
     const urls = await extractUrlsFromPage(page, selector, sameDomain, urlDomain);
 
-    const filteredUrls = urls.filter(url => url.includes('contact'));
+    const filteredUrls = urls.filter(url_ => url.parse(url_).pathname.includes('contact'));
 
     const requestOptions = createRequestOptions(filteredUrls, { depth: depth + 1 });
 
