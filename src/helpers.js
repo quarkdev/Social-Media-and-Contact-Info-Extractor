@@ -122,7 +122,15 @@ module.exports = {
 
     const urls = await extractUrlsFromPage(page, selector, sameDomain, urlDomain);
 
-    const filteredUrls = urls.filter(url_ => url.parse(url_).pathname.includes('contact'));
+    const filteredUrls = urls.filter(url_ => {
+      let pathname = url.parse(url_).pathname;
+      if (pathname !== null) {
+        return url.parse(url_).pathname.includes('contact');
+      }
+      else {
+        return false;
+      }
+    });
 
     const requestOptions = createRequestOptions(filteredUrls, { depth: depth + 1 });
 
