@@ -122,7 +122,7 @@ module.exports = {
 
     const urls = await extractUrlsFromPage(page, selector, sameDomain, urlDomain);
 
-    const filteredUrls = urls.filter(url_ => {
+    const filteredUrls = urls.filter((url_) => {
       let pathname = url.parse(url_).pathname;
       if (pathname !== null) {
         return url.parse(url_).pathname.includes('contact');
